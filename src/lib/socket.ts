@@ -7,7 +7,7 @@ export function connectSocket() {
   const token = tokenStore.get()
   if (!token) return null
   socket?.disconnect()
-  socket = io(import.meta.env.VITE_API_URL || undefined, { auth: { token }, transports: ['websocket', 'polling'] })
+  socket = io(import.meta.env.VITE_API_URL || undefined, { auth: { token }, transports: ['websocket', 'polling'], reconnectionAttempts: 3 })
   return socket
 }
 
