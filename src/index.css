@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { color-scheme: dark; }
+  body { @apply bg-ink-950 text-ink-200 antialiased; -webkit-tap-highlight-color: transparent; }
+  h1, h2, h3 { @apply text-white; }
+  input, select, textarea { @apply bg-ink-900 border border-ink-600 rounded-lg px-3 py-2.5 text-base text-white placeholder:text-ink-500 w-full focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500; }
+  input[type='checkbox'] { @apply w-5 h-5 p-0 accent-orange-500 rounded; }
+  input[type='range'] { @apply p-0 border-0 bg-transparent accent-orange-500; }
+  select { @apply pr-8; }
+  button { @apply touch-manipulation; }
+}
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 min-h-[44px] text-sm font-semibold transition active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400; }
+  .btn-primary { @apply btn bg-brand-500 text-white hover:bg-brand-600; }
+  .btn-ghost { @apply btn bg-ink-700 text-ink-200 hover:bg-ink-600; }
+  .btn-danger { @apply btn bg-red-600/90 text-white hover:bg-red-600; }
+  .btn-ok { @apply btn bg-emerald-600 text-white hover:bg-emerald-500; }
+  .btn-sm { @apply min-h-[36px] px-3 text-xs; }
+  .card { @apply bg-ink-800 border border-ink-700 rounded-xl; }
+  .label { @apply block text-xs font-medium text-ink-400 mb-1 uppercase tracking-wide; }
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+@layer utilities {
+  .font-display { font-family: 'Space Grotesk', Inter, system-ui, sans-serif; letter-spacing: -0.02em; }
+  .text-gradient { @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-300 via-brand-500 to-red-500; }
+  .glass { @apply bg-white/[0.04] backdrop-blur-xl border border-white/10; }
+  .grid-bg { background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 48px 48px; mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%); }
+}
+@media (prefers-reduced-motion: reduce) { .animate-marquee, .animate-float, .animate-sweep, .animate-drift { animation: none !important; } }
