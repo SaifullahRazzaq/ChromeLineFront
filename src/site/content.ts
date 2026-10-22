@@ -94,4 +94,3 @@ export const COMPARISONS = [
   { id: 'dent', label: 'Dent & paint', before: '/images/dent-blue.jpg', after: '/images/polish-blue.jpg', beforeLabel: 'Dents & peeling paint', afterLabel: 'Polished finish', beforePos: 'center 55%' },
 ]
 
-export const PHOTO_CREDITS = 'Photos from Unsplash — Zoshua Colah, Clark Van Der Beken, Usman Malik, Iván Antonio, Luay Barani, Clarity Coat, Winston Chen, SL Autowerkes, Yuvraj Singh, Samuele Errico Piccarini, KC Shum, Dextar Studio and others.'

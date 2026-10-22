@@ -3,7 +3,7 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import { Clock, Mail, MapPin, Menu, Phone, Wrench, X } from 'lucide-react'
 import clsx from 'clsx'
-import { BUSINESS, PHOTO_CREDITS, SERVICES } from './content'
+import { BUSINESS, SERVICES } from './content'
 import { ContactProvider, useContact } from './ContactModal'
 
 const LINKS = [
@@ -82,8 +82,7 @@ function Shell() {
           </div>
         </div>
         <div className="border-t border-ink-800 py-4 px-4 text-xs text-ink-500 flex flex-wrap justify-between gap-2 max-w-6xl mx-auto sm:px-6">
-          <span>© {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.</span>
-          <span className="basis-full text-ink-600">{PHOTO_CREDITS}</span>
+          <span>All rights reserved.</span>
           <Link to="/login" className="hover:text-white">Staff login</Link>
         </div>
       </footer>
