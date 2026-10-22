@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import { useContact } from './ContactModal'
 import { Check } from 'lucide-react'
 import clsx from 'clsx'
 import { SERVICES } from './content'
@@ -7,6 +8,7 @@ import PageHero from './PageHero'
 import { Reveal } from './Reveal'
 
 export default function Services() {
+  const { open: openContact } = useContact()
   const { hash } = useLocation()
   useEffect(() => { if (hash) setTimeout(() => document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80) }, [hash])
 
@@ -35,7 +37,7 @@ export default function Services() {
               <ul className="mt-6 grid sm:grid-cols-2 gap-3">
                 {s.points.map((p) => <li key={p} className="flex gap-3 text-sm"><Check size={18} className="text-brand-400 shrink-0 mt-0.5" />{p}</li>)}
               </ul>
-              <Link to={`/contact?service=${encodeURIComponent(s.title)}`} className="btn-primary mt-8 inline-flex min-h-[52px] px-7">Request a quote</Link>
+              <button onClick={() => openContact(s.title)} className="btn-primary mt-8 inline-flex min-h-[52px] px-7">Request a quote</button>
             </Reveal>
           </section>
         ))}

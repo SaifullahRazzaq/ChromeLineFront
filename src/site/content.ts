@@ -2,10 +2,10 @@ import { Car, CarFront, FileCheck2, Paintbrush, Wrench, type LucideIcon } from '
 
 // Edit these to match the real workshop before launch
 export const BUSINESS = {
-  name: 'Chromeline',
+  name: 'PrimeBody',
   tagline: 'Auto body & collision repair',
   phone: '+92 300 0000000',
-  email: 'hello@chromeline.example',
+  email: 'hello@primebody.example',
   address: '123 Workshop Road, Your City',
   hours: [
     ['Monday – Saturday', '9:00 am – 6:00 pm'],

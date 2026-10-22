@@ -4,16 +4,25 @@ import { motion, useScroll, useSpring } from 'framer-motion'
 import { Clock, Mail, MapPin, Menu, Phone, Wrench, X } from 'lucide-react'
 import clsx from 'clsx'
 import { BUSINESS, PHOTO_CREDITS, SERVICES } from './content'
+import { ContactProvider, useContact } from './ContactModal'
 
 const LINKS = [
   { to: '/', label: 'Home', end: true },
   { to: '/about', label: 'About Us' },
   { to: '/services', label: 'Services' },
   { to: '/track', label: 'Track Repair' },
-  { to: '/contact', label: 'Contact' },
 ]
 
 export default function SiteLayout() {
+  return (
+    <ContactProvider>
+      <Shell />
+    </ContactProvider>
+  )
+}
+
+function Shell() {
+  const { open: openContact } = useContact()
   const [open, setOpen] = useState(false)
   const { pathname } = useLocation()
   const { scrollYProgress } = useScroll()
@@ -33,14 +42,16 @@ export default function SiteLayout() {
           </Link>
           <nav className="hidden md:flex items-center" aria-label="Main">
             {LINKS.map((l) => <NavLink key={l.to} to={l.to} end={l.end} className={link}>{l.label}</NavLink>)}
-            <Link to="/contact" className="btn-primary ml-3">Get a free quote</Link>
+            <button className={link({ isActive: false })} onClick={() => openContact()}>Contact</button>
+            <button className="btn-primary ml-3" onClick={() => openContact()}>Get a free quote</button>
           </nav>
           <button className="md:hidden p-2 -mr-2" onClick={() => setOpen(!open)} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open}>{open ? <X /> : <Menu />}</button>
         </div>
         {open && (
           <nav className="md:hidden border-t border-ink-800 px-4 py-2 flex flex-col" aria-label="Mobile">
             {LINKS.map((l) => <NavLink key={l.to} to={l.to} end={l.end} className={link}>{l.label}</NavLink>)}
-            <Link to="/contact" className="btn-primary my-2">Get a free quote</Link>
+            <button className={link({ isActive: false })} onClick={() => openContact()}>Contact</button>
+            <button className="btn-primary my-2" onClick={() => openContact()}>Get a free quote</button>
           </nav>
         )}
       </header>

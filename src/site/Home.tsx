@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { useContact } from './ContactModal'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, BadgeCheck, Camera, CheckCircle2, ChevronDown, ClipboardCheck, Phone, ScanSearch, ShieldCheck } from 'lucide-react'
 import { BUSINESS, SERVICES } from './content'
@@ -17,6 +18,7 @@ const WHY = [
 ]
 
 export default function Home() {
+  const { open: openContact } = useContact()
   const hero = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({ target: hero, offset: ['start start', 'end start'] })
   const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '22%'])
@@ -44,7 +46,7 @@ export default function Home() {
             {BUSINESS.name} repairs, repaints and restores your car to showroom standard — every job photographed, tracked and inspected before it leaves.
           </motion.p>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1, duration: 0.7 }} className="mt-9 flex flex-wrap gap-3">
-            <Link to="/contact" className="btn-primary min-h-[56px] px-7 text-base shadow-[0_0_50px_-6px_rgba(249,115,22,.9)]">Get a free quote <ArrowRight size={18} /></Link>
+            <button onClick={() => openContact()} className="btn-primary min-h-[56px] px-7 text-base shadow-[0_0_50px_-6px_rgba(249,115,22,.9)]">Get a free quote <ArrowRight size={18} /></button>
             <Link to="/track" className="btn glass min-h-[56px] px-7 text-base text-white hover:bg-white/10"><ScanSearch size={18} /> Track your repair</Link>
           </motion.div>
           <a href={`tel:${BUSINESS.phone.replace(/\s/g, '')}`} className="inline-flex items-center gap-2 mt-6 text-ink-300 hover:text-white self-start"><Phone size={16} className="text-brand-400" /> or call {BUSINESS.phone}</a>
@@ -153,7 +155,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-br from-brand-600/95 via-brand-700/90 to-red-800/95" />
             <h2 className="relative font-display text-4xl sm:text-6xl font-bold text-white">Had an accident? Let's sort it.</h2>
             <p className="relative text-white/90 mt-4 text-lg max-w-xl mx-auto">Send us a few details and photos. We'll come back with a clear estimate and handle the insurer too.</p>
-            <Link to="/contact" className="relative btn bg-white text-brand-700 hover:bg-ink-200 min-h-[56px] px-8 text-base mt-8">Request a free quote <ArrowRight size={18} /></Link>
+            <button onClick={() => openContact()} className="relative btn bg-white text-brand-700 hover:bg-ink-200 min-h-[56px] px-8 text-base mt-8">Request a free quote <ArrowRight size={18} /></button>
           </div>
         </Reveal>
       </section>

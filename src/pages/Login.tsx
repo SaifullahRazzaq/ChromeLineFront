@@ -24,7 +24,7 @@ export default function Login() {
       <form onSubmit={submit} className="card w-full max-w-sm p-6 space-y-4">
         <div className="flex items-center gap-3">
           <div className="w-11 h-11 rounded-xl bg-brand-500 grid place-items-center"><Wrench className="text-white" /></div>
-          <div><h1 className="text-xl font-bold">Chromeline</h1><p className="text-sm text-ink-400">Workshop operations portal</p></div>
+          <div><h1 className="text-xl font-bold">PrimeBody</h1><p className="text-sm text-ink-400">Workshop operations portal</p></div>
         </div>
         {error && <ErrorNote>{error}</ErrorNote>}
         <Field label="Email"><input type="email" autoComplete="username" required value={email} onChange={(e) => setEmail(e.target.value)} /></Field>

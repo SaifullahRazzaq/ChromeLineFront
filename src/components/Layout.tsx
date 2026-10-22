@@ -60,7 +60,7 @@ export default function Layout() {
         <div className="flex items-center gap-2 px-2 py-3 mb-4">
           <div className="w-9 h-9 rounded-lg bg-brand-500 grid place-items-center"><Wrench size={20} className="text-white" /></div>
           <div>
-            <div className="font-bold text-white leading-tight">Chromeline</div>
+            <div className="font-bold text-white leading-tight">PrimeBody</div>
             <div className="text-[11px] text-ink-400 uppercase tracking-wider">{staff ? 'Workshop ops' : 'Technician portal'}</div>
           </div>
         </div>
@@ -83,7 +83,7 @@ export default function Layout() {
 
       <div className="flex-1 min-w-0 flex flex-col">
         <header className="lg:hidden sticky top-0 z-30 bg-ink-900/95 backdrop-blur border-b border-ink-700 flex items-center justify-between px-4 h-14">
-          <div className="flex items-center gap-2 font-bold text-white"><div className="w-7 h-7 rounded-md bg-brand-500 grid place-items-center"><Wrench size={15} /></div> Chromeline</div>
+          <div className="flex items-center gap-2 font-bold text-white"><div className="w-7 h-7 rounded-md bg-brand-500 grid place-items-center"><Wrench size={15} /></div> PrimeBody</div>
           <button className="relative p-2 -mr-2" aria-label={`Notifications (${unread} unread)`} onClick={() => nav('/messages')}>
             <Bell size={22} />
             {unread > 0 && <span className="absolute top-0.5 right-0 rounded-full bg-brand-500 text-white text-[10px] min-w-[18px] h-[18px] grid place-items-center">{unread}</span>}

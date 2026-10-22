@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { useContact } from './ContactModal'
 import { Eye, HeartHandshake, Hammer, ShieldCheck } from 'lucide-react'
 import { BUSINESS } from './content'
 import PageHero from './PageHero'
@@ -13,6 +13,7 @@ const VALUES = [
 ]
 
 export default function About() {
+  const { open: openContact } = useContact()
   return (
     <>
       <PageHero eyebrow="About us" title={<>A workshop built around <span className="text-gradient">getting it right.</span></>} image="/images/shop-floor.jpg" position="center 40%">
@@ -24,7 +25,7 @@ export default function About() {
           <h2 className="font-display text-4xl sm:text-5xl font-bold">Document. Repair. Inspect. Deliver.</h2>
           <p className="text-ink-300 text-lg mt-5">Our process is simple: record the damage, agree the estimate, repair carefully, and have a supervisor inspect the finished work before the keys go back to you.</p>
           <p className="text-ink-300 text-lg mt-4">If a repair does not pass, it is reworked first. Every job is tracked from check-in to delivery, with photos and time records, so nothing is missed.</p>
-          <Link to="/contact" className="btn-primary mt-7 inline-flex min-h-[52px] px-7">Talk to us</Link>
+          <button onClick={() => openContact()} className="btn-primary mt-7 inline-flex min-h-[52px] px-7">Talk to us</button>
         </Reveal>
         <Reveal delay={0.1}>
           <div className="relative">
