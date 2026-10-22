@@ -5,6 +5,7 @@ import { api } from '../../lib/api'
 import { fmtDate, fmtDateTime, REPAIR_LABEL } from '../../lib/format'
 import type { JobDetail } from '../../lib/types'
 import { ActionButton, Badge, Empty, Section } from '../ui'
+import { EditDetails, TrackingInfo } from './EditDetails'
 import { useAuth } from '../../auth/AuthContext'
 
 const Row = ({ k, children }: { k: string; children: React.ReactNode }) => (
@@ -21,7 +22,7 @@ export default function Overview({ job, reload }: { job: JobDetail; reload: () =
 
   return (
     <div className="grid lg:grid-cols-2 gap-4">
-      <Section title="Vehicle">
+      <Section title="Vehicle" action={staff && <EditDetails job={job} reload={reload} />}>
         <dl>
           <Row k="Make / model">{[v.make, v.model].filter(Boolean).join(' ')}</Row>
           <Row k="Year">{v.year}</Row>
@@ -30,6 +31,7 @@ export default function Overview({ job, reload }: { job: JobDetail; reload: () =
           <Row k="Colour">{v.color}</Row>
           <Row k="Mileage">{v.mileage?.toLocaleString()}</Row>
         </dl>
+        {staff && <TrackingInfo job={job} />}
       </Section>
 
       <Section title="Customer">

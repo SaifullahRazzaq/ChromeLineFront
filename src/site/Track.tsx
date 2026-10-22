@@ -22,7 +22,7 @@ export default function Track() {
   const submit = async (e: FormEvent) => {
     e.preventDefault()
     setBusy(true); setError(''); setRes(null)
-    try { setRes(await api.post<Result>('/track', { orderNo, plate })) } catch (err) { setError((err as Error).message) } finally { setBusy(false) }
+    try { setRes(await api.post<Result>('/track', { orderNo: orderNo.trim(), plate: plate.trim() })) } catch (err) { setError((err as Error).message) } finally { setBusy(false) }
   }
 
   return (
@@ -32,11 +32,11 @@ export default function Track() {
       <div className="relative max-w-3xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
         <span className="text-brand-400 text-sm font-semibold uppercase tracking-widest">Track your repair</span>
         <h1 className="font-display text-4xl sm:text-6xl font-bold mt-2">Where's my <span className="text-gradient">car?</span></h1>
-        <p className="text-ink-300 mt-3 text-lg">Enter the order number from your paperwork and your number plate to see live progress from our workshop floor.</p>
+        <p className="text-ink-300 mt-3 text-lg">Enter the order number from your paperwork and your number plate (or the phone number you gave us) to see live progress from our workshop floor.</p>
 
         <form onSubmit={submit} className="glass rounded-2xl p-5 sm:p-6 mt-8 grid sm:grid-cols-[1fr_1fr_auto] gap-4 items-end">
           <Field label="Order number"><input required placeholder="RO-1001" value={orderNo} onChange={(e) => setOrderNo(e.target.value)} /></Field>
-          <Field label="Number plate"><input required placeholder="ABC-123" value={plate} onChange={(e) => setPlate(e.target.value)} /></Field>
+          <Field label="Number plate or phone"><input required placeholder="ABC-123 or 0300…" value={plate} onChange={(e) => setPlate(e.target.value)} /></Field>
           <button className="btn-primary min-h-[48px] px-6" disabled={busy}><Search size={17} /> {busy ? 'Checking…' : 'Track'}</button>
         </form>
         {error && <div className="mt-4"><ErrorNote>{error}</ErrorNote></div>}

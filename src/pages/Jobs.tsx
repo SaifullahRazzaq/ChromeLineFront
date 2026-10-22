@@ -70,7 +70,7 @@ function NewJobModal({ open, onClose, onCreated }: { open: boolean; onClose: () 
           <Field label="Make"><input value={f.make} onChange={(e) => set('make', e.target.value)} /></Field>
           <Field label="Model"><input value={f.model} onChange={(e) => set('model', e.target.value)} /></Field>
           <Field label="Year"><input type="number" value={f.year} onChange={(e) => set('year', e.target.value)} /></Field>
-          <Field label="Plate"><input value={f.plate} onChange={(e) => set('plate', e.target.value)} /></Field>
+          <Field label="Number plate *" hint="Customers use this to track"><input value={f.plate} onChange={(e) => set('plate', e.target.value)} /></Field>
         </div>
         <Field label="VIN"><input value={f.vin} onChange={(e) => set('vin', e.target.value)} /></Field>
         <Field label="Damage description"><textarea rows={2} value={f.damage} onChange={(e) => set('damage', e.target.value)} /></Field>
@@ -93,7 +93,7 @@ function NewJobModal({ open, onClose, onCreated }: { open: boolean; onClose: () 
         <label className="flex items-center gap-3 min-h-[44px]"><input type="checkbox" checked={f.approved} onChange={(e) => set('approved', e.target.checked)} /> Customer approved estimate</label>
         <div className="flex justify-end gap-2">
           <button className="btn-ghost" onClick={onClose}>Cancel</button>
-          <ActionButton disabled={!f.customer || !f.make} success="Job created" onAction={async () => {
+          <ActionButton disabled={!f.customer || !f.make || !f.plate.trim()} success="Job created" onAction={async () => {
             await api.post('/jobs', {
               customer: { name: f.customer, phone: f.phone }, vehicle: { make: f.make, model: f.model, year: Number(f.year) || undefined, vin: f.vin, plate: f.plate },
               damageDescription: f.damage, instructions: f.instructions, priority: f.priority, deadline: f.deadline ? new Date(f.deadline).toISOString() : undefined,
