@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Bell, ClipboardCheck, Clock, Gauge, Inbox, LayoutDashboard, ListChecks, LogOut, MessageSquare, MoreHorizontal, Package, Settings, Users, Wrench } from 'lucide-react'
+import { Bell, ClipboardCheck, Clock, Boxes, Gauge, Inbox, LayoutDashboard, ListChecks, LogOut, MessageSquare, MoreHorizontal, Package, Settings, UserPlus, Users, Wrench } from 'lucide-react'
 import clsx from 'clsx'
 import { useAuth } from '../auth/AuthContext'
 import { api } from '../lib/api'
@@ -42,6 +42,8 @@ export default function Layout() {
     { to: '/attendance', label: 'Attendance', icon: Clock },
     { to: '/messages', label: 'Messages', icon: MessageSquare },
     { to: '/team', label: 'Team', icon: Users, show: staff },
+    { to: '/technicians', label: 'Technicians', icon: UserPlus, show: staff },
+    { to: '/inventory', label: 'Inventory', icon: Boxes, show: staff },
     { to: '/inquiries', label: 'Inquiries', icon: Inbox, show: staff },
     { to: '/admin', label: 'Admin', icon: Settings, show: user.role === 'admin' || user.can.viewFinancials },
   ].filter((i) => i.show !== false)

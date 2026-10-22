@@ -8,6 +8,11 @@ export interface User {
   specialty?: string
   phone?: string
   active?: boolean
+  employeeId?: string
+  joinedAt?: string
+  skills?: string[]
+  address?: string
+  emergencyContact?: { name: string; phone: string }
   permissions?: { approveQC: boolean; viewFinancials: boolean; manageTechnicians: boolean }
   can: { approveQC: boolean; viewFinancials: boolean; manageTechnicians: boolean; manageSettings: boolean; viewAllJobs: boolean }
 }
@@ -78,7 +83,7 @@ export interface PartRequest {
   createdAt: string
 }
 
-export interface Part { _id: string; sku: string; name: string; category: string; stock: number; reserved: number; available: number; location: string }
+export interface Part { _id: string; sku: string; name: string; category: string; stock: number; reserved: number; available: number; location: string; unitCost: number; reorderLevel: number; supplier: string; description?: string; active: boolean; lowStock: boolean }
 
 export interface JobDetail extends JobCard {
   damageDescription: string

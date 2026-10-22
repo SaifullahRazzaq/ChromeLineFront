@@ -15,6 +15,8 @@ import Messages from './pages/Messages'
 import Team from './pages/Team'
 import Admin from './pages/Admin'
 import Inquiries from './pages/Inquiries'
+import Technicians from './pages/Technicians'
+import Inventory from './pages/Inventory'
 import SiteLayout from './site/SiteLayout'
 import Home from './site/Home'
 import About from './site/About'
@@ -54,6 +56,8 @@ export default function App() {
               <Route path="team" element={<Team />} />
               <Route path="admin" element={<Admin />} />
               <Route path="inquiries" element={<Inquiries />} />
+              <Route path="technicians" element={<Technicians />} />
+              <Route path="inventory" element={<Inventory />} />
             </Route>
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

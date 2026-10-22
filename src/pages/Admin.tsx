@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { Plus } from 'lucide-react'
 import { api } from '../lib/api'
 import { useLoad } from '../lib/hooks'
 import type { User } from '../lib/types'
 import { useAuth } from '../auth/AuthContext'
-import { ActionButton, Badge, Empty, Field, Loading, PromptModal, Section, Stat, Tabs } from '../components/ui'
+import { ActionButton, Badge, Empty, Field, Loading, Section, Stat, Tabs } from '../components/ui'
 
 interface Settings { shiftMinutes: number; maxBreakMinutes: number; workshopName: string; autoClockOutHours: number }
 interface Fin { jobCount: number; totalEstimates: number; approvedEstimates: number; approvedSupplements: number; byStatus: Record<string, number> }
@@ -39,11 +39,10 @@ const PERMS: { key: 'approveQC' | 'viewFinancials' | 'manageTechnicians'; label:
 function People() {
   const { user: me } = useAuth()
   const { data, reload } = useLoad<User[]>('/admin/users')
-  const [open, setOpen] = useState(false)
   if (!data) return <Loading />
   const patch = (id: string, body: unknown) => async () => { await api.patch(`/admin/users/${id}`, body); reload() }
   return (
-    <Section title="Users" action={<button className="btn-primary btn-sm" onClick={() => setOpen(true)}><Plus size={14} /> Add user</button>}>
+    <Section title="Users" action={<Link className="btn-primary btn-sm" to="/technicians"><Plus size={14} /> Add / edit people</Link>}>
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead className="text-xs uppercase text-ink-400 text-left"><tr><th className="py-2">Name</th><th>Role</th><th>Grants</th><th className="text-right">Status</th></tr></thead>
@@ -75,10 +74,6 @@ function People() {
         </table>
       </div>
       <p className="text-xs text-ink-500 mt-3">Technicians approve QC only when granted; supervisors and admins can always approve. Nobody can approve their own repair.</p>
-      <PromptModal open={open} onClose={() => setOpen(false)} title="Add user" submitLabel="Create"
-        fields={[{ name: 'name', label: 'Name', required: true }, { name: 'email', label: 'Email', required: true }, { name: 'password', label: 'Temporary password (8+ chars)', required: true },
-          { name: 'role', label: 'Role', type: 'select', options: ['technician', 'supervisor', 'admin'] }, { name: 'specialty', label: 'Specialty' }]}
-        onSubmit={async (v) => { await api.post('/admin/users', v); reload() }} />
     </Section>
   )
 }
